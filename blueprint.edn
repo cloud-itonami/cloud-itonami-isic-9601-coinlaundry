@@ -1,0 +1,13 @@
+{:itonami.blueprint/id "cloud-itonami-isic-9601-coinlaundry"
+ :itonami.blueprint/name "Coin-operated (self-service) laundry"
+ :itonami.blueprint/isic-rev5 "9601"
+ :itonami.blueprint/satellite-of "cloud-itonami-isic-9601"
+ :itonami.blueprint/domain :services/coin-operated-laundry
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:community-access :data-sovereignty :transparency]
+ :itonami.blueprint/governor :coin-laundry-governor
+ :itonami.blueprint/required-technologies [:identity :forms :dmn :audit-ledger]
+ :itonami.blueprint/optional-technologies [:robotics]
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/robotics false
+ :itonami.blueprint/maturity :implemented}
