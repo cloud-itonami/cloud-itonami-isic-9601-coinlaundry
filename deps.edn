@@ -5,7 +5,14 @@
  ;; (forkable outside the workspace); the :local/root paths only resolve
  ;; inside the monorepo checkout — a standalone fork should override
  ;; them with git coordinates.
- :deps {io.github.kotoba-lang/langgraph
+ ;; jp-go-dds supplies the shared operator-console skin (デジタル庁
+ ;; デザインシステム + the compat skin every sibling console renders
+ ;; through). Pinned by sha, and a git coordinate rather than a
+ ;; :local/root so a standalone fork still resolves it.
+ :deps {io.github.kotoba-lang/jp-go-digital-design-system
+        {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
+         :git/sha "83db99546eabc53613ae826ea41d1533a3c574af"}
+        io.github.kotoba-lang/langgraph
         {:local/root "../../kotoba-lang/langgraph"}}
  :aliases
  {:dev {:override-deps
@@ -13,6 +20,10 @@
          {:local/root "../../kotoba-lang/langchain"}}}
   ;; clojure -M:dev:run  -> drive the demo through one OperationActor
   :run {:main-opts ["-m" "coinlaundry.sim"]}
+  ;; clojure -M:dev:render-html [out-file] -> regenerate
+  ;; docs/samples/operator-console.html by driving the REAL actor graph.
+  ;; Refuses to write a console that carries no :governor-hold fact.
+  :render-html {:main-opts ["-m" "coinlaundry.render-html"]}
   :test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
                       {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
