@@ -301,6 +301,16 @@
 (defn- ops-list [op-set]
   (str/join " " (map #(code (str %)) (sort-by str op-set))))
 
+(defn- oxford
+  "Join derived phrases into readable prose. The register lists in the
+  attribution section are computed, so their length is not known here."
+  [xs]
+  (case (count xs)
+    0 ""
+    1 (first xs)
+    2 (str (first xs) " and " (second xs))
+    (str (str/join ", " (butlast xs)) ", and " (last xs))))
+
 ;; ----------------------------- sections -----------------------------
 
 (defn- summary-section [db runs]
@@ -314,9 +324,8 @@
             [["operations driven through the actor graph" (esc (count runs))]
              ["append-only ledger facts written" (esc (count ledger))]
              ["HARD governor holds" (crit (esc (count hs)))]
-             ["distinct governor rules fired"
-              (str (esc (count (rules-fired db))) " of "
-                   (esc (count (rules-fired db))) " reachable in one run")]
+             ["distinct governor rules fired" (esc (count (rules-fired db)))]
+             ["which rules" (str/join " " (map #(code (kw-str %)) (rules-fired db)))]
              ["human approvals granted"
               (esc (count (filter #(= :approved (:kind (outcome %))) runs)))]
              ["human approvals refused"
@@ -503,12 +512,12 @@
              (str/join " " (map code approvers)) " as the approver. "
              (if (seq retaining)
                (str "That id survives into "
-                    (str/join ", " (map #(str "<strong>" (esc (:label %)) "</strong>") retaining))
+                    (oxford (map #(str "<strong>" (esc (:label %)) "</strong>") retaining))
                     ", whose commit branch stores the record payload verbatim. ")
                "")
              (if (seq dropping)
                (str "It does <strong>not</strong> survive into "
-                    (str/join ", " (map #(str "<strong>" (esc (:label %)) "</strong>") dropping))
+                    (oxford (map #(str "<strong>" (esc (:label %)) "</strong>") dropping))
                     " &mdash; those branches either store the pre-approval value or recompute "
                     "the record from the registry, so the approver exists only on the run's "
                     "audit trail. ")

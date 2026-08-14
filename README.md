@@ -89,9 +89,21 @@ consent form.
 ## Run it
 
 ```bash
-clojure -M:dev:run     # 5 commits and 6 distinct governor holds
-clojure -M:dev:test    # 24 tests / 66 assertions
+clojure -M:dev:run          # 5 commits and 6 distinct governor holds
+clojure -M:dev:test         # 24 tests / 66 assertions
+clojure -M:dev:render-html  # regenerate docs/samples/operator-console.html
 ```
+
+`:render-html` drives the same real actor graph over the same real seed
+and writes the operator console from what comes back — machine ids,
+suspension and custody numbers, hold rules and their detail strings are
+all read out of the store and the governor, never typed. Its scenario is
+longer than `:run`'s: it commits the sanitation plan a jurisdiction
+requires *before* attempting each actuation, so every one of the
+governor's nine HARD rules fires on a row of its own instead of
+`:evidence-incomplete` co-firing with two of them. **It throws rather
+than write a console carrying no `:governor-hold` fact** — a page that
+shows no real hold is not evidence of a governor.
 
 ```
 :committed     :machine/register                  machine-1

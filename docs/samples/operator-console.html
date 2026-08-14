@@ -2481,7 +2481,8 @@ img,svg { max-width: 100%; height: auto; }</style>
         <tr><td>operations driven through the actor graph</td><td>19</td></tr>
         <tr><td>append-only ledger facts written</td><td>19</td></tr>
         <tr><td>HARD governor holds</td><td><span class="critical">9</span></td></tr>
-        <tr><td>distinct governor rules fired</td><td>9 of 9 reachable in one run</td></tr>
+        <tr><td>distinct governor rules fired</td><td>9</td></tr>
+        <tr><td>which rules</td><td><code>abandonment-period-not-elapsed</code> <code>already-held</code> <code>already-suspended</code> <code>evidence-incomplete</code> <code>machine-cycle-running</code> <code>no-spec-basis</code> <code>op-not-allowed</code> <code>sanitation-inspection-overdue</code> <code>scope-excluded</code></td></tr>
         <tr><td>human approvals granted</td><td>8</td></tr>
         <tr><td>human approvals refused</td><td>1</td></tr>
         <tr><td>auto-committed without a human</td><td>1</td></tr>
@@ -2619,7 +2620,7 @@ img,svg { max-width: 100%; height: auto; }</style>
         <tr><td>abandoned-property custodies</td><td><code>:machine/mark-property-held</code></td><td>1</td><td><span class="critical">no &mdash; audit only, not retained in record</span></td></tr>
       </tbody>
     </table>
-    <p>This run's <code>:approval-granted</code> audit facts name <code>op-1</code> as the approver. That id survives into <strong>sanitation plans</strong>, <strong>inspection screenings</strong>, whose commit branch stores the record payload verbatim. It does <strong>not</strong> survive into <strong>machine entities</strong>, <strong>machine suspensions</strong>, <strong>abandoned-property custodies</strong> &mdash; those branches either store the pre-approval value or recompute the record from the registry, so the approver exists only on the run's audit trail. The store's own ledger carries <strong>no</strong> <code>:approval-granted</code> fact: the <code>:commit</code> node appends only its <code>:committed</code> fact. Naming the approver on those rows anyway would let a reader mistake &ldquo;the store did not keep it&rdquo; for &ldquo;nobody approved it&rdquo;.</p>
+    <p>This run's <code>:approval-granted</code> audit facts name <code>op-1</code> as the approver. That id survives into <strong>sanitation plans</strong> and <strong>inspection screenings</strong>, whose commit branch stores the record payload verbatim. It does <strong>not</strong> survive into <strong>machine entities</strong>, <strong>machine suspensions</strong>, and <strong>abandoned-property custodies</strong> &mdash; those branches either store the pre-approval value or recompute the record from the registry, so the approver exists only on the run's audit trail. The store's own ledger carries <strong>no</strong> <code>:approval-granted</code> fact: the <code>:commit</code> node appends only its <code>:committed</code> fact. Naming the approver on those rows anyway would let a reader mistake &ldquo;the store did not keep it&rdquo; for &ldquo;nobody approved it&rdquo;.</p>
   </section>
   <section class="card">
     <h2>Audit ledger (append-only, this run)</h2>
