@@ -23,7 +23,7 @@
 
   `:inspection-interval-days` is the number the overdue check
   recomputes against. It is data, not a constant in the governor."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def spec-basis-table
   {"JPN" {:name "Japan"
@@ -54,7 +54,7 @@
                               "Wartungsprotokoll (machine-maintenance-record)"
                               "Fundsachen-Protokoll (abandoned-property-record)"]}})
 
-(defn spec-basis [iso3] (get spec-basis-table (some-> iso3 str/upper-case)))
+(defn spec-basis [iso3] (get spec-basis-table (some-> iso3 str/upper)))
 (defn covered? [iso3] (some? (spec-basis iso3)))
 
 (defn coverage-summary []

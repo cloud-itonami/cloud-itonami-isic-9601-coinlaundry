@@ -42,7 +42,7 @@
 
   Usage: `clojure -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [jp-go-dds.skin]
             [langgraph.graph :as g]
             [coinlaundry.facts :as facts]
@@ -222,7 +222,7 @@
 
 (def ^:private approver-key?
   #(contains? #{"approved-by" "approved_by" "approver" "approved_by_id"}
-              (str/lower-case %)))
+              (str/lower %)))
 
 (defn- registers
   "The four SSoT registers this actor writes, read back through the

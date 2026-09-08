@@ -8,7 +8,7 @@
   arithmetic identity (parts cost, water reclaim). An unattended site's
   risks are 'has the required interval passed' -- for sanitation, and
   for the moment property may be treated as abandoned."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ----------------------------- elapsed-time identities -----------------------------
 
@@ -52,7 +52,7 @@
 ;; ----------------------------- record drafting -----------------------------
 
 (defn- seq->number [prefix jurisdiction seq-n]
-  (str prefix "-" (str/upper-case (or jurisdiction "XXX")) "-"
+  (str prefix "-" (str/upper (or jurisdiction "XXX")) "-"
        (str/join (repeat (max 0 (- 4 (count (str (inc seq-n))))) "0"))
        (inc seq-n)))
 
