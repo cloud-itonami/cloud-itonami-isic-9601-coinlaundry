@@ -89,9 +89,9 @@ consent form.
 ## Run it
 
 ```bash
-clojure -M:dev:run          # 5 commits and 6 distinct governor holds
-clojure -M:dev:test         # 24 tests / 66 assertions
-clojure -M:dev:render-html  # regenerate docs/samples/operator-console.html
+kbb -M:dev:run          # 5 commits and 6 distinct governor holds
+kbb -M:dev:test         # 24 tests / 66 assertions
+kbb -M:dev:render-html  # regenerate docs/samples/operator-console.html
 ```
 
 `:render-html` drives the same real actor graph over the same real seed

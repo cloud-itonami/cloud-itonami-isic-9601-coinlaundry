@@ -40,7 +40,7 @@
   there is no randomness and no network. Two consecutive runs against the
   same seed produce byte-identical output.
 
-  Usage: `clojure -M:dev:render-html [out-file]`
+  Usage: `kbb -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
   (:require [kotoba.lang.text :as str]
             [jp-go-dds.skin]
@@ -586,7 +586,7 @@
    (attribution-section (approver-attribution db runs))
    (ledger-section db)
    "</main>\n"
-   "<footer>Regenerate with <code>clojure -M:dev:render-html</code>. "
+   "<footer>Regenerate with <code>kbb -M:dev:render-html</code>. "
    "Deterministic &mdash; the actor never reads a clock, and there is no randomness and no "
    "network, so two consecutive runs against the same seed are byte-identical. "
    "The generator refuses to write this file at all if the run produced no "

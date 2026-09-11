@@ -1,5 +1,5 @@
 (ns coinlaundry.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean machine through
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean machine through
   registration -> sanitation-plan verification -> inspection screening ->
   suspension (escalate/approve/commit) -> abandoned-property hold
   (escalate/approve/commit), then shows every HARD-hold scenario:
